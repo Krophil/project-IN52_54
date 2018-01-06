@@ -15,10 +15,10 @@ function [result] = pic2data(pic)
     
     % Passer de 255 valeurs à 51 (réunion par pack de 5)
     
-    result = zeros(51,1);
+    result = zeros(50,1);
     nbPixel = 0;
     
-    for i=5:5:255
+    for i=10:5:255
        result(i/5) = counts(i) + counts(i-1) + counts(i-2) + counts(i-3) + counts(i-4);
        nbPixel = nbPixel + result(i/5);
     end
