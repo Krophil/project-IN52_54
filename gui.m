@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 04-Dec-2017 16:08:18
+% Last Modified by GUIDE v2.5 06-Jan-2018 18:21:43
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,26 +73,31 @@ function varargout = gui_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
+% --- Executes on button press in OpenFile.
+function OpenFile_Callback(hObject, eventdata, handles)
+% hObject    handle to OpenFile (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+resulats = chercherDansBDD([],'bsstest.mat');
+
+
+
+function nomFichier_Callback(hObject, eventdata, handles)
+% hObject    handle to nomFichier (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-
-
-function edit1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of edit1 as text
-%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+% Hints: get(hObject,'String') returns contents of nomFichier as text
+%        str2double(get(hObject,'String')) returns contents of nomFichier as a double
+handles.nomFichier = get(hObject,'String');
+imshow(handles.nomFichier, 'Parent', handles.Image1);
+result = chercherDansBDD(pic2data(imread('7wonders.jpg')), 'bddtest.mat')
+handles.Resultats.Data = result;
 
 
 % --- Executes during object creation, after setting all properties.
-function edit1_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
+function nomFichier_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to nomFichier (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -101,3 +106,22 @@ function edit1_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes during object creation, after setting all properties.
+function ImagePanel_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to ImagePanel (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+handles.currentImage = [];
+imshow(handles.currentImage);
+
+
+% --- Executes during object creation, after setting all properties.
+function Image1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Image1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate Image1
