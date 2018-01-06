@@ -1,6 +1,7 @@
 \documentclass{st50_template}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{fancyhdr}
 \lstdefinestyle{sharpc}{language=[Sharp]C}
 \lstset{style=sharpc}
 \begin{document}
@@ -8,27 +9,43 @@
 \thispagestyle{empty}
 \begin{picture}(0,0)
 %Images
-\put(-90, -130){\includegraphics[scale=0.897]{images/image_fond}}
-\put(380, -708){\includegraphics[scale=0.897]{images/logo_UTBM}}
+\put(-90, -122){\includegraphics[scale=0.897]{images/image_fond}}
+\put(380, -700){\includegraphics[scale=0.897]{images/logo_UTBM}}
 %Color
-\put(-89, -148){\colorbox{black}{\makebox(609, 15){}}}
-\put(-89, -234){\colorbox{purple}{\makebox(609, 80){}}}
-\put(-89, -255){\colorbox{gray}{\makebox(609, 15){}}}
-\put(-89, -641){\colorbox{yellow}{\makebox(609, 380){}}}
+\put(-89, -140){\colorbox{black}{\makebox(609, 15){}}}
+\put(-89, -226){\colorbox{purple}{\makebox(609, 80){}}}
+\put(-89, -247){\colorbox{gray}{\makebox(609, 15){}}}
+\put(-89, -633){\colorbox{yellow}{\makebox(609, 380){}}}
 %Text
-\put(-72, -146){\Large\textcolor{white}{\textbf{UNIVERSITÉ DE TECHNOLOGIE} DE BELFORT-MONTBÉLIARD}}
-\put(-72, -201){\Huge\textcolor{white}{Serious game de rééducation}}
-\put(-72, -251){\large\textcolor{white}{Rapport de IN52 - IN54}}
-\put(-72, -296){\Large{\textbf{BOUCHEREAU Thomas - BRUNET Pierre - PERREZ Stéphane}}}
-\put(-62, -316){\large\textcolor{gray}{Département Informatique - Imagerie, Interaction et Réalité Virtuelle}}
+\put(-72, -138){\Large\textcolor{white}{\textbf{UNIVERSITÉ DE TECHNOLOGIE} DE BELFORT-MONTBÉLIARD}}
+\put(-72, -193){\Huge\textcolor{white}{Serious game de rééducation}}
+\put(-72, -243){\large\textcolor{white}{Rapport de IN52 - IN54}}
+\put(-72, -288){\Large{\textbf{BOUCHEREAU Thomas - BRUNET Pierre - PERREZ Stéphane}}}
+\put(-62, -308){\large\textcolor{gray}{Département Informatique - Imagerie, Interaction et Réalité Virtuelle}}
 %\put(-42, -426){\Large{\textbf{LABORATOIRE SYSTEMES ET TRANSPORTS (IRTES SET)}}}
-\put(-62, -416){\large\textcolor{gray}{Université de Technologie de Belfort Montbéliard}}
-\put(-62, -431){\large\textcolor{gray}{90 010 - BELFORT CEDEX}}
-\put(-72, -576){\large\textcolor{gray}{\textbf{Responsable TX52}}}
-\put(-72, -596){\Large{\textbf{GECHTER Frank}}}
-\put(320, -576){\large\textcolor{gray}{\textbf{Enseignant VI50}}}
-\put(320, -596){\Large{\textbf{CHEVRIAU Sébastien}}}
+\put(-62, -408){\large\textcolor{gray}{Université de Technologie de Belfort Montbéliard}}
+\put(-62, -423){\large\textcolor{gray}{90 010 - BELFORT CEDEX}}
+\put(-72, -568){\large\textcolor{gray}{\textbf{Responsable TX52}}}
+\put(-72, -588){\Large{\textbf{GECHTER Frank}}}
+\put(320, -568){\large\textcolor{gray}{\textbf{Enseignant VI50}}}
+\put(320, -588){\Large{\textbf{CHEVRIAU Sébastien}}}
 \end{picture}
+
+
+\fancyhead{}
+\cfoot{}
+
+\pagestyle{fancy}
+\setlength{\headheight}{20pt} 
+\chead{}
+\rhead{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{TO52 \quad Bouchereau Thomas - Brunet Pierre - Perrez Stéphane}
+\fancyfoot[R]{\includegraphics[width=2cm]{images/logo_UTBM}}
+
+\definecolor{lightgray}{gray}{0.8}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
 
 \newpage
 \thispagestyle{empty}
@@ -99,7 +116,7 @@ Vous verrez sur les figures \ref{fitgeotrans} et \ref{transRecadre} les différe
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.77\textwidth]{images/transRecadre.jpg}
+    \includegraphics[width=\textwidth]{images/transRecadre.jpg}
     \caption{Recadrage maximal obtenu}
     \label{transRecadre}
 \end{figure}

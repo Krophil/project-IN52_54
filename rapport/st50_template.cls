@@ -1,7 +1,7 @@
 \ProvidesClass{st50_template}[4/2/2015 custom ST class]
 \LoadClass[12pt]{article}
 
-\RequirePackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\RequirePackage[top=2.5cm, bottom=4cm, left=2.5cm, right=2.5cm]{geometry}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[francais]{babel}
