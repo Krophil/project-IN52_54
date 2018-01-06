@@ -3,15 +3,9 @@ function [result] = pic2data(pic)
     hslPic = rgb2hsv(pic); 
     hPic = hslPic(:,:,1);
     
-    figure
-    imshow(hPic)
-    
     % Passage en histogramme
     
     [counts, x] = imhist(hPic);
-    
-    figure
-    hist(hPic);
     
     % Passer de 255 valeurs à 51 (réunion par pack de 5)
     
