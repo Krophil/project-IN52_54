@@ -25,8 +25,7 @@ function [ resultats ] = chercherDansBDD( histogramme, nomBdd )
         [tailleBDD, ~] = size(bdd);
         for i=1:tailleBDD
             %calcul du coefficient de correlation
-            ddc = (corrcoef(histogramme, bdd{i,3}));
-            ddc = ddc(2);
+            ddc = ressamblanceCourbes(histogramme, bdd{i,3});
             %calcul de la somme des coefficient pour le calcul du
             %pourcentage final
             sommeDdc = sommeDdc + ddc;
