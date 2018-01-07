@@ -80,16 +80,25 @@ function nomFichier_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of nomFichier as text
 %        str2double(get(hObject,'String')) returns contents of nomFichier as a double
+
+%Recuperation du nom du fichier
 handles.nomFichier = get(hObject,'String');
-hold on;
-hough = transformeeHough(imread(handles.nomFichier));
-result = chercherDansBDD(pic2data(hough), 'bddtest.mat');
-imshow(hough, 'Parent', handles.Image1);
+hold on; %Pour ne pas supprimer les tag des axes
+hough = transformeeHough(imread(handles.nomFichier)); %calcul de l'image de
+%la boite en enlevant le fond
+imshow(hough, 'Parent', handles.Image1); %son affichage
+result = chercherDansBDD(pic2data(hough), 'bddtest.mat');%Obtention des
+%5 resultats les plus proches
+%On affiche les 5 resultats dans la gui
 affichage = result;
 affichage(:,2) = [];
 set(handles.Resultats, 'Data', affichage);
-imshow(result{1,2}, 'Parent', handles.Image2);
+
+imshow(result{1,2}, 'Parent', handles.Image2);%Affichage de l'image du 
+%premier resultat
 hold off
+
+%debug : affichage des histogrammes de l'immage et des 5 resultats
 figure
 subplot(2,3,1), plot(pic2data(hough));
 for i=1:5

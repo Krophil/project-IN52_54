@@ -10,7 +10,7 @@ function [result] = pic2data(pic)
     
     % Passer de 255 valeurs � 51 (r�union par pack de 5)
     
-    result = zeros(11,1);
+    result = zeros(50,1);
     nbPixel = 0;
     
     for i=10:5:255
@@ -19,5 +19,6 @@ function [result] = pic2data(pic)
     end
     
     result = result / nbPixel;
+    
 end
 
