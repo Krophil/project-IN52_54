@@ -1,5 +1,5 @@
-function [ ] = transformeeHough( )
-    im = imread('whitehall.jpg');
+function [ final ] = transformeeHough( im )
+    %im = imread(im);
     img = rgb2hsv(im);
     
     % Élément structurant de l'érosion
@@ -43,20 +43,20 @@ function [ ] = transformeeHough( )
     [H,T,R] = hough(BW);
     P  = houghpeaks(H,5, 'Threshold',10);
     lines = houghlines(BW,T,R,P, 'MinLength', size(im_rec,1)*0.5, 'FillGap', size(im,2)/2);
-    figure
-    subplot(1,2,1), imshow(im_rec);
-    hold on
-    for k = 1:length(lines)
-       xy = [lines(k).point1; lines(k).point2];
-       plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
-    end
+%     figure
+    %subplot(1,2,1), imshow(im_rec);
+%     hold on
+%     for k = 1:length(lines)
+%        xy = [lines(k).point1; lines(k).point2];
+%        plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
+%     end
     polynomes = cell(length(lines), 1);
     for k = 1:length(lines)
         polynomes{k} = polyfit([lines(k).point1(1) lines(k).point2(1)], [lines(k).point1(2) lines(k).point2(2)],1);
         
         % Affichage pour debuggage
-        xy = [lines(k).point1; lines(k).point2];
-        plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','red');
+%         xy = [lines(k).point1; lines(k).point2];
+%         plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','red');
     end
     
     % Recherche des points d'intersection des lignes récupérées autour de
@@ -68,7 +68,7 @@ function [ ] = transformeeHough( )
                 x_intersect = fzero(@(x) polyval(polynomes{jdx}-polynomes{idx},x),3);
                 y_intersect = polyval(polynomes{idx},x_intersect);
                 if(x_intersect > 1 && x_intersect < size(im_rec, 2) && y_intersect > 1 && y_intersect < size(im_rec, 1))
-                     plot(x_intersect,y_intersect,'or');
+%                      plot(x_intersect,y_intersect,'or');
                     points = [points ; x_intersect y_intersect];
                 end
             end
@@ -96,6 +96,6 @@ function [ ] = transformeeHough( )
     
     
     %transformBoite('mr_jack_originalHSL.jpg', points, final);
-     subplot(1,2,2), imshow(final); 
+    % subplot(1,2,2), imshow(final); 
 end
 

@@ -1,6 +1,7 @@
 function [result] = pic2data(pic)
     % On r�cup�re uniquement la teinte de l'image    
-    hslPic = rgb2hsv(pic); 
+    %hslPic = rgb2hsv(pic);
+    hslPic = pic;
     hPic = hslPic(:,:,1);
     
     % Passage en histogramme

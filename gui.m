@@ -83,7 +83,7 @@ function nomFichier_Callback(hObject, eventdata, handles)
 handles.nomFichier = get(hObject,'String');
 hold on;
 imshow(handles.nomFichier, 'Parent', handles.Image1);
-result = chercherDansBDD(pic2data(imread(handles.nomFichier)), 'bddtest.mat');
+result = chercherDansBDD(pic2data(transformeeHough(imread(handles.nomFichier))), 'bddtest.mat');
 affichage = result;
 affichage(:,2) = [];
 set(handles.Resultats, 'Data', affichage);
