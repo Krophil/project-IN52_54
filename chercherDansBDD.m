@@ -1,10 +1,11 @@
 function [ resultats ] = chercherDansBDD( histogramme, nomBdd )
 %UNTITLED3 Summary of this function goes here
-%   resultats : cell de taille 3,5 contenant le nom des jeux,
-%               les images des jeux et les degres de confiance
+%   resultats : cell de taille 4,5 contenant le nom des jeux,
+%               les images des jeux, les degres de confiance
 
     nbResultats = 5;
     resultatstmp = cell(nbResultats,3);
+    resultats = cell(nbResultats,4);
     for i=1:nbResultats
         resultatstmp{i,3} = 0;
     end
@@ -40,6 +41,9 @@ function [ resultats ] = chercherDansBDD( histogramme, nomBdd )
 %             resultats{i,3} = resultats{i,3}/sommeDdc;
 %         end
         resultats = flipud(sortrows(resultatstmp,3));
+        for i=1:nbResultats
+            resultats{i,4} = floor(resultats{i,3}/sommeDdc *100);
+        end
     end
     
 
