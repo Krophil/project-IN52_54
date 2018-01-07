@@ -18,7 +18,8 @@ function [ resultats ] = chercherDansBDD( histogramme, nomBdd )
         
         [tailleBDD, ~] = size(bdd);
         for i=1:tailleBDD
-            ddc = exp(-norm(histogramme - bdd{i,3}));
+            ddc = (corrcoef(histogramme, bdd{i,3}));
+            ddc = ddc(2);
             sommeDdc = sommeDdc + ddc;
             if(ddc > minDdc)
                 resultatstmp{indexMinDdc, 1} = bdd{i,1};

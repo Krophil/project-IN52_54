@@ -82,13 +82,20 @@ function nomFichier_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of nomFichier as a double
 handles.nomFichier = get(hObject,'String');
 hold on;
-imshow(handles.nomFichier, 'Parent', handles.Image1);
-result = chercherDansBDD(pic2data(transformeeHough(imread(handles.nomFichier))), 'bddtest.mat');
+hough = transformeeHough(imread(handles.nomFichier));
+result = chercherDansBDD(pic2data(hough), 'bddtest.mat');
+imshow(hough, 'Parent', handles.Image1);
 affichage = result;
 affichage(:,2) = [];
 set(handles.Resultats, 'Data', affichage);
 imshow(result{1,2}, 'Parent', handles.Image2);
 hold off
+figure
+subplot(2,3,1), plot(pic2data(hough));
+for i=1:5
+    subplot(2,3,1+i), plot(pic2data(result{i,2}));
+end
+
 
 
 % --- Executes during object creation, after setting all properties.

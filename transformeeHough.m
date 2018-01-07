@@ -92,7 +92,7 @@ function [ final ] = transformeeHough( im )
     bw = poly2mask(points(:,1),points(:,2),size(im_rec,1), size(im_rec,2));
     toAnalyse = rgb2hsv(im(testF_V:testL_V, testF_H:testL_H, :));
     mask_three_chan = repmat(bw, [1, 1, 3]);
-    final = toAnalyse.*mask_three_chan;
+    final = hsv2rgb(toAnalyse.*mask_three_chan);
     
     
     %transformBoite('mr_jack_originalHSL.jpg', points, final);
