@@ -22,7 +22,7 @@ function varargout = gui(varargin)
 
 % Edit the above text to modify the response to help gui
 
-% Last Modified by GUIDE v2.5 06-Jan-2018 18:21:43
+% Last Modified by GUIDE v2.5 07-Jan-2018 15:08:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,15 +73,6 @@ function varargout = gui_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in OpenFile.
-function OpenFile_Callback(hObject, eventdata, handles)
-% hObject    handle to OpenFile (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-resulats = chercherDansBDD([],'bsstest.mat');
-
-
-
 function nomFichier_Callback(hObject, eventdata, handles)
 % hObject    handle to nomFichier (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -90,9 +81,23 @@ function nomFichier_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of nomFichier as text
 %        str2double(get(hObject,'String')) returns contents of nomFichier as a double
 handles.nomFichier = get(hObject,'String');
+hold on;
 imshow(handles.nomFichier, 'Parent', handles.Image1);
-result = chercherDansBDD(pic2data(imread('7wonders.jpg')), 'bddtest.mat')
-handles.Resultats.Data = result;
+result = chercherDansBDD(pic2data(imread(handles.nomFichier)), 'bddtest.mat');
+affichage = cell(2,5);
+affichage{1,1} = result{1,1};
+affichage{1,2} = result{1,3};
+affichage{2,1} = result{2,1};
+affichage{2,2} = result{2,3};
+affichage{3,1} = result{3,1};
+affichage{3,2} = result{3,3};
+affichage{4,1} = result{4,1};
+affichage{4,2} = result{4,3};
+affichage{5,1} = result{5,1};
+affichage{5,2} = result{5,3};
+set(handles.Resultats, 'Data', affichage);
+imshow(result{1,2}, 'Parent', handles.Image2);
+hold off
 
 
 % --- Executes during object creation, after setting all properties.
@@ -114,8 +119,6 @@ function ImagePanel_CreateFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
-handles.currentImage = [];
-imshow(handles.currentImage);
 
 
 % --- Executes during object creation, after setting all properties.
@@ -125,3 +128,12 @@ function Image1_CreateFcn(hObject, eventdata, handles)
 % handles    empty - handles not created until after all CreateFcns called
 
 % Hint: place code in OpeningFcn to populate Image1
+
+
+% --- Executes during object creation, after setting all properties.
+function Image2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Image2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: place code in OpeningFcn to populate Image2

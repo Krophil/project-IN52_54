@@ -14,11 +14,11 @@ function [ ] = ajouterBDD( image, histogrammeImage, nomJeu, nomBDD )
         [taille, ~] = size(bdd);
         index = taille + 1;
         %On cherche si le jeu est deja enregistre
-%         for i=1:taille 
-%             if(nomJeu == bdd{i,1})
-%                 index = i;
-%             end
-%         end
+        for i=1:taille 
+            if(strcmp(nomJeu,bdd{i,1}))
+                index = i;
+            end
+        end
         bdd{index, 1} = nomJeu;
         bdd{index, 2} = image;
         bdd{index, 3} = histogrammeImage;

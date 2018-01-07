@@ -4,7 +4,10 @@ function [ resultats ] = chercherDansBDD( histogramme, nomBdd )
 %               les images des jeux et les degres de confiance
 
     nbResultats = 5;
-    resultats = cell(nbResultats,3);
+    resultatstmp = cell(nbResultats,3);
+    for i=1:nbResultats
+        resultatstmp{i,3} = 0;
+    end
     sommeDdc = 0;
     minDdc = 0;
     indexMinDdc = 1;
@@ -17,26 +20,26 @@ function [ resultats ] = chercherDansBDD( histogramme, nomBdd )
             ddc = exp(-norm(histogramme - bdd{i,3}));
             sommeDdc = sommeDdc + ddc;
             if(ddc > minDdc)
-                resultats{indexMinDdc, 1} = bdd{i,1};
-                resultats{indexMinDdc, 2} = bdd{i,2};
-                resultats{indexMinDdc, 3} = ddc;
+                resultatstmp{indexMinDdc, 1} = bdd{i,1};
+                resultatstmp{indexMinDdc, 2} = bdd{i,2};
+                resultatstmp{indexMinDdc, 3} = ddc;
                 
                 
                 %Mise a jour du degre de confiance minimal
-                minDdc = resultats{1, 3};
+                minDdc = resultatstmp{1, 3};
                 indexMinDdc = 1;
                 for j=2:nbResultats
-                    if(minDdc > resultats{j, 3})
-                        minDdc = resultats{j, 3};
+                    if(minDdc > resultatstmp{j, 3})
+                        minDdc = resultatstmp{j, 3};
                         indexMinDdc = j;
                     end
                 end
             end
         end
-        for i=1:nbResultats
-            resultats{i,3} = resultats{i,3}/sommeDdc;
-        end
-        
+%         for i=1:nbResultats
+%             resultats{i,3} = resultats{i,3}/sommeDdc;
+%         end
+        resultats = flipud(sortrows(resultatstmp,3));
     end
     
 

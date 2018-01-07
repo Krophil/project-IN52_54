@@ -1,5 +1,5 @@
 function [result] = pic2data(pic)
-    % On récupère uniquement la teinte de l'image    
+    % On rï¿½cupï¿½re uniquement la teinte de l'image    
     hslPic = rgb2hsv(pic); 
     hPic = hslPic(:,:,1);
     
@@ -7,7 +7,7 @@ function [result] = pic2data(pic)
     
     [counts, x] = imhist(hPic);
     
-    % Passer de 255 valeurs à 51 (réunion par pack de 5)
+    % Passer de 255 valeurs ï¿½ 51 (rï¿½union par pack de 5)
     
     result = zeros(50,1);
     nbPixel = 0;
