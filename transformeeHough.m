@@ -1,5 +1,5 @@
 function [ ] = transformeeHough( )
-    im = imread('lords_of_xidit.jpg');
+    im = imread('mr_jack.jpg');
     img = rgb2hsv(im);
     
     % Élément structurant de l'érosion
@@ -76,9 +76,9 @@ function [ ] = transformeeHough( )
     end
     
     % Unicité des coordonnées
-    points = uniquetol(points(:,1:2),'ByRows',true)
+    points = uniquetol(points(:,1:2),'ByRows',true);
 %     plot(points(:,1), points(:,2),'*r');
-    points = floor(points)
+    points = floor(points);
     
     % Coordonnées dans le sens clockwise pour que le polygone soit
     % correctement formé
@@ -88,8 +88,7 @@ function [ ] = transformeeHough( )
     cy = mean(y);
     a = atan2(y - cy, x - cx);
     [~, order] = sort(a);
-    points = [x(order) y(order)]
-    size(im_rec)
+    points = [x(order) y(order)];
     bw = poly2mask(points(:,1),points(:,2),size(im_rec,1), size(im_rec,2));
     toAnalyse = rgb2hsv(im(testF_V:testL_V, testF_H:testL_H, :));
     mask_three_chan = repmat(bw, [1, 1, 3]);
