@@ -1,5 +1,5 @@
 function [ ] = transformeeHough( )
-    im = imread('mr_jack.jpg');
+    im = imread('whitehall.jpg');
     img = rgb2hsv(im);
     
     % Élément structurant de l'érosion
