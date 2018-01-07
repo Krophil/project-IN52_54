@@ -1,5 +1,5 @@
 function [ ] = transformeeHough( )
-    im = imread('mr_jack.jpg');
+    im = imread('lords_of_xidit.jpg');
     img = rgb2hsv(im);
     
     % Élément structurant de l'érosion
@@ -13,21 +13,21 @@ function [ ] = transformeeHough( )
     test = uint8(medfilt2(test));
     test = im2bw(test, 0);
     test = imfill(test, 'holes');
-    test = imerode(imerode(imerode(imerode(imerode(test, SE), SE), SE), SE), SE);
+    test = imerode(imerode(imerode(imerode(imerode(imerode(imerode(test, SE), SE), SE), SE), SE), SE), SE);
 
     % Rognage de l'image autour de la boîte de jeu
     sumPixV = sum(test==1,2);
-    testF_V = find(sumPixV > 0, 1, 'first')-20;
+    testF_V = find(sumPixV > 0, 1, 'first')-200;
     if(testF_V < 1)
         testF_V = 1;
     end
     testL_V = find(sumPixV > 0, 1, 'last')+20;
-    if(testL_V > size(im, 2))
-        testL_V = size(im,2);
+    if(testL_V > size(im, 1))
+        testL_V = size(im,1);
     end
     
     sumPixH = sum(test==1,1);
-    testF_H = find(sumPixH > 0, 1, 'first')-20;
+    testF_H = find(sumPixH > 0, 1, 'first')-50;
     if(testF_H < 1)
         testF_H = 1;
     end
@@ -41,22 +41,22 @@ function [ ] = transformeeHough( )
     % Transformée de Hough
     BW = edge(im_rec,'canny');
     [H,T,R] = hough(BW);
-    P  = houghpeaks(H,4, 'Threshold',10);
+    P  = houghpeaks(H,5, 'Threshold',10);
     lines = houghlines(BW,T,R,P, 'MinLength', size(im_rec,1)*0.5, 'FillGap', size(im,2)/2);
-    % figure
-    % subplot(1,2,1), imshow(im_rec);
-    % hold on
+    figure
+    subplot(1,2,1), imshow(im_rec);
+    hold on
     for k = 1:length(lines)
-       % xy = [lines(k).point1; lines(k).point2];
-       % plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
+       xy = [lines(k).point1; lines(k).point2];
+       plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','green');
     end
     polynomes = cell(length(lines), 1);
     for k = 1:length(lines)
         polynomes{k} = polyfit([lines(k).point1(1) lines(k).point2(1)], [lines(k).point1(2) lines(k).point2(2)],1);
         
         % Affichage pour debuggage
-        %xy = [lines(k).point1; lines(k).point2];
-        %plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','red');
+        xy = [lines(k).point1; lines(k).point2];
+        plot(xy(:,1),xy(:,2),'LineWidth',2,'Color','red');
     end
     
     % Recherche des points d'intersection des lignes récupérées autour de
@@ -68,7 +68,7 @@ function [ ] = transformeeHough( )
                 x_intersect = fzero(@(x) polyval(polynomes{jdx}-polynomes{idx},x),3);
                 y_intersect = polyval(polynomes{idx},x_intersect);
                 if(x_intersect > 1 && x_intersect < size(im_rec, 2) && y_intersect > 1 && y_intersect < size(im_rec, 1))
-%                     plot(x_intersect,y_intersect,'or');
+                     plot(x_intersect,y_intersect,'or');
                     points = [points ; x_intersect y_intersect];
                 end
             end
@@ -96,7 +96,7 @@ function [ ] = transformeeHough( )
     final = toAnalyse.*mask_three_chan;
     
     
-    transformBoite('mr_jack_originalHSL.jpg', points, final);
-%     subplot(1,2,2), imshow(final); 
+    %transformBoite('mr_jack_originalHSL.jpg', points, final);
+     subplot(1,2,2), imshow(final); 
 end
 
