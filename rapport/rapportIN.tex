@@ -2,8 +2,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage{fancyhdr}
-\lstdefinestyle{sharpc}{language=[Sharp]C}
-\lstset{style=sharpc}
+\lstset{language=Matlab}
 \begin{document}
 \sffamily
 \thispagestyle{empty}
@@ -18,7 +17,7 @@
 \put(-89, -633){\colorbox{yellow}{\makebox(609, 380){}}}
 %Text
 \put(-72, -138){\Large\textcolor{white}{\textbf{UNIVERSITÉ DE TECHNOLOGIE} DE BELFORT-MONTBÉLIARD}}
-\put(-72, -193){\Huge\textcolor{white}{Reconnaissance de boites de jeux de plateau}}
+\put(-72, -193){\Huge\textcolor{white}{Reconnaissance de boîtes de jeux de plateaux}}
 \put(-72, -243){\large\textcolor{white}{Rapport de IN52 - IN54}}
 \put(-72, -288){\Large{\textbf{BOUCHEREAU Thomas - BRUNET Pierre - PERREZ Stéphane}}}
 \put(-62, -308){\large\textcolor{gray}{Département Informatique - Imagerie, Interaction et Réalité Virtuelle}}
@@ -156,6 +155,14 @@ Pour permettre à l'utilisateur de facilement utiliser le programme, nous avons 
     \caption{Histogrammes de la photo Loony Quest recadrée et des 5 plus proches voisins}
     \label{interface}
 \end{figure}
+
+\subsection{Mode d'emploi}
+Pour lancer l'application, il suffit de lancer :
+\begin{lstlisting}[frame=single]
+ $ ./run_gui.sh ''PATH_OF_R2016A_FOLDER''
+\end{lstlisting}
+
+Vous pouvez ensuite tester différentes images en mettant le chemin relatif dans le champ de texte demandé et en appuyant sur Entrée. Par exemple, pour l'image de Abyss, il faut préciser ``Images/abyss.jpg''.
 
 
 \section{Conclusion}
