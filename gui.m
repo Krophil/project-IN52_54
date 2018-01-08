@@ -99,11 +99,11 @@ imshow(result{1,2}, 'Parent', handles.Image2);%Affichage de l'image du
 hold off
 
 %debug : affichage des histogrammes de l'immage et des 5 resultats
-figure
-subplot(2,3,1), plot(pic2data(hough));
-for i=1:5
-    subplot(2,3,1+i), plot(pic2data(result{i,2}));
-end
+% figure
+% subplot(2,3,1), plot(pic2data(hough));
+% for i=1:5
+%     subplot(2,3,1+i), plot(pic2data(result{i,2}));
+% end
 
 
 
