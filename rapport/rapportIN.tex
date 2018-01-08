@@ -9,7 +9,7 @@
 \thispagestyle{empty}
 \begin{picture}(0,0)
 %Images
-\put(-90, -122){\includegraphics[scale=0.897]{images/image_fond}}
+\put(-90, -122){\includegraphics[scale=0.800]{images/banner}}
 \put(380, -700){\includegraphics[scale=0.897]{images/logo_UTBM}}
 %Color
 \put(-89, -140){\colorbox{black}{\makebox(609, 15){}}}
@@ -105,27 +105,61 @@ La fonction fitgeotrans permet de rapprocher une image d'une autre grâce à un 
 
 C'est à partir de ce moment-là que nous avons rencontré des problèmes. En effet, la fonction n'est pas aussi efficace qu'elle le sous-entend. Malgré tous nos efforts, nous n'avons pu que redresser la boîte sans pouvoir changer les angles de l'image.
 
-Vous verrez sur les figures \ref{fitgeotrans} et \ref{transRecadre} les différents résultats obtenus grâce à la fonction Matlab fitgeotrans.
+Vous verrez sur la figure \ref{fitgeotrans} les résultats obtenus grâce à la fonction Matlab fitgeotrans et à un recadrage.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.77\textwidth]{images/fitgeotrans.jpg}
+    \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{images/fitgeotrans.jpg}
     \caption{Résultat de la fonction \emph{fitgeotrans}}
-    \label{fitgeotrans}
-\end{figure}
-
-\begin{figure}[ht]
-    \centering
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{images/transRecadre.jpg}
     \caption{Recadrage maximal obtenu}
-    \label{transRecadre}
+    \end{minipage}
+    \label{fitgeotrans}
 \end{figure}
 
 \subsection{Analyse des fréquences}
 
 Nous avons donc décidé de revenir à l'image pré-traitée et ne comparer que les fréquences de couleurs afin de pouvoir rapidement reconnaître un jeu. Cela s'est révélé plus logique et plus optimisé en prenant comme couleurs le HSL. Nous n'avions alors qu'à récupérer le Hue (à savoir la nuance) de chaque pixel et comparer les densités par rapport à la base de données.
 
-\subsection{Apprentissage}
+Pour savoir quel photo correspond à quel jeu, nous avons récupérer les dessus des boîtes de jeux (trouvés sur des sites marchands) et nous leur avons associé le nom du jeu dans une base de données.
+
+Une fois la photo transformée et recadrée, sans la transformation de \emph{fitgeotrans} pour gagner du temps, nous la comparons avec la base de données.
+
+Voici l'exemple du jeu Loony Quest et de son analyse d'histogramme :
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/graphLoonyQuest.jpg}
+    \caption{Histogrammes de la photo Loony Quest recadrée et des 5 plus proches voisins}
+    \label{loonyQuest}
+\end{figure}
+
+On voit ainsi que les deux premiers histogrammes sont relativement proches mais peu pratiques à comparer pour un ordinateur. Nous avons donc décidé de créer une fonction calculant la ressemblance entre deux histogrammes. Elle utilise la fonction Matlab \emph{corrcoef} mais avec un delta permettant de décaler la courbe et ainsi vérifier que les couleurs sont proches ou non.
+
+\subsection{Analyse des résultats}
+
+Sur 10 photos de jeux différents testés, 6 fonctionnent sans soucis. Les 10 sont ainsi bien recadrés et analysés mais certains sont peu pratiques à l'analyse. Ainsi, le Takenoko et le IKnow ne fonctionnent pas en raison d'une boîte plus clair que les autres et donc plus sensible au peu de luminosité qu'il y avait lors de la prise de photo.
+
+En revanche, les 6 photos qui fonctionnent ont un pourcentage de ressemblance avoisinant les 90\% pour la plupart. Nous pensons donc que la base de données pourra être complétée à l'avenir et évoluer sur un apprentissage poussé tel que le deep learning.
+
+\subsection{Interface graphique}
+Pour permettre à l'utilisateur de facilement utiliser le programme, nous avons mis en place une interface permettant de visualiser le résultat le plus proche ainsi qu'un tableau des cinq meilleures estimations quant à l'identité du jeu.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{images/interface.png}
+    \caption{Histogrammes de la photo Loony Quest recadrée et des 5 plus proches voisins}
+    \label{interface}
+\end{figure}
+
 
 \section{Conclusion}
+
+Ce projet a été pour nous très utile et intéressant. En effet, nous nous sommes rendus compte de la difficulté de traitement de photos et nous avons pu tenter plusieurs méthodes afin de retrouver le jeu correspondant. Nous avons ainsi pu utiliser des outils encore peu connus de nous-mêmes sur Matlab. De plus, nous avons appris de nouvelles méthode de comparaison telles que celle du Coefficient de Corrélation utilisée dans notre programme. Enfin, nous avons pu tenter en conditions les éléments appris en cours et en travaux pratiques et dirigés, cela permet d'avoir une expérience réelle de l'imagerie que ce soit dans le traitement comme dans l'analyse d'une image. Nous pensons avoir pu concilier les deux matières dans ce projet.
+
+Dans les améliorations possibles, nous pensons qu'il serait intéressant de combiner plusieurs classifieurs mais également d'intégrer un algorithme de deep-learning. De plus, après avoir utiliser les outils disponibles de Matlab, nous nous demandons s'il ne serait pas plus viable de demander à l'utilisateur de centrer la photo de lui-même. Cela éviterait ainsi du temps de calcul et permettrait d'être encore plus précis dans la comparaison.
 \end{document}
