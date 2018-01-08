@@ -18,17 +18,17 @@
 \put(-89, -633){\colorbox{yellow}{\makebox(609, 380){}}}
 %Text
 \put(-72, -138){\Large\textcolor{white}{\textbf{UNIVERSITÉ DE TECHNOLOGIE} DE BELFORT-MONTBÉLIARD}}
-\put(-72, -193){\Huge\textcolor{white}{Serious game de rééducation}}
+\put(-72, -193){\Huge\textcolor{white}{Reconnaissance de boites de jeux de plateau}}
 \put(-72, -243){\large\textcolor{white}{Rapport de IN52 - IN54}}
 \put(-72, -288){\Large{\textbf{BOUCHEREAU Thomas - BRUNET Pierre - PERREZ Stéphane}}}
 \put(-62, -308){\large\textcolor{gray}{Département Informatique - Imagerie, Interaction et Réalité Virtuelle}}
 %\put(-42, -426){\Large{\textbf{LABORATOIRE SYSTEMES ET TRANSPORTS (IRTES SET)}}}
 \put(-62, -408){\large\textcolor{gray}{Université de Technologie de Belfort Montbéliard}}
 \put(-62, -423){\large\textcolor{gray}{90 010 - BELFORT CEDEX}}
-\put(-72, -568){\large\textcolor{gray}{\textbf{Responsable TX52}}}
-\put(-72, -588){\Large{\textbf{GECHTER Frank}}}
-\put(320, -568){\large\textcolor{gray}{\textbf{Enseignant VI50}}}
-\put(320, -588){\Large{\textbf{CHEVRIAU Sébastien}}}
+\put(-72, -568){\large\textcolor{gray}{\textbf{Responsable IN52}}}
+\put(-72, -588){\Large{\textbf{Cindy CAPPELLE}}}
+\put(320, -568){\large\textcolor{gray}{\textbf{Responsable IN54}}}
+\put(320, -588){\Large{\textbf{Yassine RUICHEK}}}
 \end{picture}
 
 
@@ -41,7 +41,7 @@
 \rhead{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
-\fancyfoot[L]{TO52 \quad Bouchereau Thomas - Brunet Pierre - Perrez Stéphane}
+\fancyfoot[L]{IN52-54 \quad Bouchereau Thomas - Brunet Pierre - Perrez Stéphane}
 \fancyfoot[R]{\includegraphics[width=2cm]{images/logo_UTBM}}
 
 \definecolor{lightgray}{gray}{0.8}
@@ -81,7 +81,7 @@ Pour récupérer la face du dessus, il est nécessaire de pouvoir distinguer les
 
 Après ce pré-traitement, on applique la transformée de Hough à des lignes faisant au moins une certaines longueur pour éviter d'avoir des lignes du dessin du jeu. On allonge ensuite ces lignes et on récupère les points d'intersection. 
 
-Ces points d'intersection ont été produits grâce aux fonctions \emph{polynomes} et \emph{polyval}. Cependant, les lignes générées ne sont pas forcément dans le bon ordre. Par conséquent, les points ne le sont pas non plus. De plus, on génère toutes les intersections de lignes possibles. Il faut donc faire un tri pour éviter les duplicas et également les trier dans un ordre donné. C'est le dernier traitement que j'applique avant de passer à l'analyse de l'image.
+Ces points d'intersection ont été produits grâce aux fonctions \emph{polynomes} et \emph{polyval}. Cependant, les lignes générées ne sont pas forcément dans le bon ordre. Par conséquent, les points ne le sont pas non plus. De plus, on génère toutes les intersections de lignes possibles. Il faut donc faire un tri pour éviter les duplicas et également les trier dans un ordre donné. C'est le dernier traitement appliqué avant de passer à l'analyse de l'image.
 
 \begin{figure}[ht]
     \centering
@@ -161,5 +161,5 @@ Pour permettre à l'utilisateur de facilement utiliser le programme, nous avons 
 
 Ce projet a été pour nous très utile et intéressant. En effet, nous nous sommes rendus compte de la difficulté de traitement de photos et nous avons pu tenter plusieurs méthodes afin de retrouver le jeu correspondant. Nous avons ainsi pu utiliser des outils encore peu connus de nous-mêmes sur Matlab. De plus, nous avons appris de nouvelles méthode de comparaison telles que celle du Coefficient de Corrélation utilisée dans notre programme. Enfin, nous avons pu tenter en conditions les éléments appris en cours et en travaux pratiques et dirigés, cela permet d'avoir une expérience réelle de l'imagerie que ce soit dans le traitement comme dans l'analyse d'une image. Nous pensons avoir pu concilier les deux matières dans ce projet.
 
-Dans les améliorations possibles, nous pensons qu'il serait intéressant de combiner plusieurs classifieurs mais également d'intégrer un algorithme de deep-learning. De plus, après avoir utiliser les outils disponibles de Matlab, nous nous demandons s'il ne serait pas plus viable de demander à l'utilisateur de centrer la photo de lui-même. Cela éviterait ainsi du temps de calcul et permettrait d'être encore plus précis dans la comparaison.
+Dans les améliorations possibles, nous pensons qu'il serait intéressant de combiner plusieurs classifieurs mais également d'intégrer un algorithme de deep-learning. De plus, après avoir utilisé les outils disponibles de Matlab, nous nous demandons s'il ne serait pas plus viable de demander à l'utilisateur de centrer la photo de lui-même. Cela éviterait ainsi du temps de calcul et permettrait d'être encore plus précis dans la comparaison.
 \end{document}
